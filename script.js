@@ -66,8 +66,28 @@ document.getElementById("recintoSelect").addEventListener("change", function() {
 
 document.getElementById("registroForm").addEventListener("submit", function(e) {
   e.preventDefault();
-  document.getElementById("registroForm").style.display = "none";
-  document.getElementById("mensajeGracias").style.display = "block";
+
+  const nombre = this.nombre.value;
+  const ci = this.ci.value;
+  const telefono = this.telefono.value;
+  const distrito = this.distritoSelect.value;
+  const zona = this.zonaSelect.value;
+  const recinto = this.recintoSelect.value;
+
+  fetch("https://script.google.com/macros/s/AKfycbwZQ_n229ouFba2w4bEsyNdbAhJ7dib8b2z5WBxIkLLDpX_bBbIJ89K3efMnQATX29opg/exec", {
+    method: "POST",
+    body: JSON.stringify({ nombre, ci, telefono, distrito, zona, recinto }),
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("registroForm").style.display = "none";
+    document.getElementById("mensajeGracias").style.display = "block";
+  });
+});
+
 });
 
 function mostrarFormulario() {
