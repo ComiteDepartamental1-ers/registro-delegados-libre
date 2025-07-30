@@ -87,10 +87,3 @@ document.getElementById("registroForm").addEventListener("submit", function(e) {
     document.getElementById("mensajeGracias").style.display = "block";
   });
 });
-
-});
-
-function mostrarFormulario() {
-  document.getElementById("videoContainer").style.display = "none";
-  document.getElementById("formContainer").style.display = "block";
-}
